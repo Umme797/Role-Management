@@ -161,7 +161,6 @@ def create_role(request):
         context['rname'] = rname
         context['rdesc'] = rdesc
 
-        # Use the correct field name `role_name` instead of `name`
         if Role.objects.filter(role_name=rname).exists():
             messages.error(request, "Role name already exists.")
         else:
@@ -177,7 +176,7 @@ def create_role(request):
 @login_required
 def update_role(request, rid):
     context = {}
-    role = get_object_or_404(Role, role_id=rid)  # Use role_id instead of id
+    role = get_object_or_404(Role, role_id=rid)  
     context['role'] = role
 
     if request.method == "POST":
